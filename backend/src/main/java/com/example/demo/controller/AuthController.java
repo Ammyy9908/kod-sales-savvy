@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5174", allowCredentials = "true")
 @RequestMapping("/api/auth")
 public class AuthController {
 
@@ -37,14 +35,11 @@ public class AuthController {
 
             Cookie cookie = new Cookie("authToken", token);
             cookie.setHttpOnly(true);
-            cookie.setSecure(false); // Set to true if using HTTPS
+            cookie.setSecure(true); // Set to true for HTTPS
             cookie.setPath("/");
             cookie.setMaxAge(3600); // 1 hour
-            cookie.setDomain("localhost"); // Optional but useful
+            cookie.setSameSite("None"); // Important for cross-origin requests
             response.addCookie(cookie);
-            
-            response.addHeader("Set-Cookie",
-                    String.format("authToken=%s; HttpOnly; Path=/; Max-Age=3600; SameSite=None", token));
 
             Map<String, Object> responseBody = new HashMap<>();
             responseBody.put("message", "Login successful");

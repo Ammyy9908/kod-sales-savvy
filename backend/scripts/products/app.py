@@ -1,3 +1,33 @@
+# import mysql.connector
+# import csv
+
+# # Connect to the MySQL database
+# connection = mysql.connector.connect(
+#     host="mysql-48b11cc-sb78639-cb19.d.aivencloud.com",  # Remove 'mysql://' prefix
+#     user="avnadmin",  # Your MySQL username
+#     password="AVNS_Svf_GbRxTYviXNAXl07",  # Your MySQL password
+#     database="salessavvy",  # Your MySQL database
+#     port=20474  # Your MySQL port
+# )
+
+# cursor = connection.cursor()
+
+# # Open your CSV file
+# with open('products.csv', mode='r') as file:
+#     csv_reader = csv.reader(file)
+#     next(csv_reader)  # Skip the header row
+#     #product_id,name,description,price,stock,category_id,created_at,updated_at
+#     #1,Shirt1,"Stylish Shirt1",499.99,100,1,"2025-01-01 17:41:26","2025-01-01 17:41:26"
+#     for row in csv_reader:
+#         cursor.execute("INSERT INTO products (product_id, name, description, price, stock, category_id, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)", (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
+
+# # Commit the transaction
+# connection.commit()
+
+# # Close the connection
+# cursor.close()
+# connection.close()
+
 import mysql.connector
 import csv
 
